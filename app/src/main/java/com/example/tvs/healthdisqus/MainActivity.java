@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawer;
-    TextView login;
 
 
     @Override
@@ -49,9 +48,16 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
 
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-       Category_fragment category_fragment=new Category_fragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Category_fragment category_fragment = new Category_fragment();
+
+        Bundle b = new Bundle();
+
+        b.putString("id" , "0");
+
+        category_fragment.setArguments(b);
+
         ft.add(R.id.layout_to_replace,category_fragment);
         ft.commit();
 

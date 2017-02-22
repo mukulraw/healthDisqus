@@ -30,12 +30,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="General"
+        android:textAllCaps="true"
+        android:textSize="18sp"
         android:layout_gravity="center_vertical"
-
         android:gravity="center_vertical"
         android:textColor="#000000"
-        android:id="@+id/text1"/>
+        android:id="@+id/name"/>
 
 
     </LinearLayout>
