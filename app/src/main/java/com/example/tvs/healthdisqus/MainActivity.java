@@ -15,12 +15,16 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
     Toolbar toolbar;
     DrawerLayout drawer;
+    TextView name , home , settings , logout;
 
 
     @Override
@@ -28,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(MainActivity.this));
+
+        name = (TextView)findViewById(R.id.name);
+        home = (TextView)findViewById(R.id.home);
+        settings = (TextView)findViewById(R.id.settings);
+        logout = (TextView)findViewById(R.id.logout);
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
@@ -47,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        bean be = (bean)getApplicationContext();
+
+        name.setText("Hello, " + be.name);
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -55,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = new Bundle();
 
         b.putString("id" , "0");
+        b.putString("name" , "root");
 
         category_fragment.setArguments(b);
 

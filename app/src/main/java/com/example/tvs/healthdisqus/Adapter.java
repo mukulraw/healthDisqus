@@ -65,7 +65,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
                     Bundle b = new Bundle();
                     b.putString("id" , item.getCatId());
-
+                    b.putString("name" , item.getCatName());
                     category_fragment.setArguments(b);
 
                     ft.replace(R.id.layout_to_replace,category_fragment);
@@ -81,6 +81,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
                     Bundle b = new Bundle();
                     b.putString("id" , item.getCatId());
+
+                    b.putString("name" , item.getCatName());
 
                     category_fragment.setArguments(b);
 

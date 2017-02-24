@@ -2,6 +2,7 @@ package com.example.tvs.healthdisqus;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.github.florent37.materialtextfield.MaterialTextField;
 
 import interfaces.allAPIs;
 import loginPOJO.loginBean;
@@ -23,9 +26,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Login extends AppCompatActivity {
 
-    Button signin,join;
-    EditText username,password;
+    Button signin , join;
+    EditText username , password;
     ProgressBar progress;
+
     Toolbar toolbar;
 
     @Override
@@ -33,12 +37,15 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
         try {
-            getSupportActionBar().setTitle("Login");
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            toolbar.setTitle("Login");
             toolbar.setTitleTextColor(Color.WHITE);
 
         } catch (NullPointerException e1) {
@@ -51,8 +58,8 @@ public class Login extends AppCompatActivity {
         signin= (Button) findViewById(R.id.button);
         join= (Button) findViewById(R.id.button1);
 
-        username= (EditText) findViewById(R.id.edit);
-        password= (EditText) findViewById(R.id.edit1);
+        username= (EditText) findViewById(R.id.username);
+        password= (EditText) findViewById(R.id.password);
 
 
         signin.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +108,7 @@ public class Login extends AppCompatActivity {
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://hellthnu.com/")
+                .baseUrl("http://www.healthdisqus.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -130,6 +137,8 @@ public class Login extends AppCompatActivity {
                     Intent i = new Intent(Login.this , MainActivity.class);
 
                     startActivity(i);
+
+                    finish();
 
                 }
                 else

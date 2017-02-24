@@ -11,7 +11,7 @@ public class TopicDetail {
     private String description;
     @SerializedName("total_reply")
     @Expose
-    private String totalReply;
+    private Integer totalReply;
 
     public String getDescription() {
         return description;
@@ -21,11 +21,11 @@ public class TopicDetail {
         this.description = description;
     }
 
-    public String getTotalReply() {
+    public Integer getTotalReply() {
         return totalReply;
     }
 
-    public void setTotalReply(String totalReply) {
+    public void setTotalReply(Integer totalReply) {
         this.totalReply = totalReply;
     }
 

@@ -41,7 +41,8 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         try {
-            getSupportActionBar().setTitle("Register");
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            toolbar.setTitle("Register");
             toolbar.setTitleTextColor(Color.WHITE);
 
         } catch (NullPointerException e1) {
@@ -113,7 +114,7 @@ public class Register extends AppCompatActivity {
     public void register(String username , String email , String password)
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://hellthnu.com/")
+                .baseUrl("http://www.healthdisqus.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

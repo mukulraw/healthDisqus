@@ -29,6 +29,9 @@ public class Topic {
     @SerializedName("topic_detail")
     @Expose
     private List<TopicDetail> topicDetail = null;
+    @SerializedName("is_bookmark")
+    @Expose
+    private String isBookmark;
 
     public String getTopicId() {
         return topicId;
@@ -84,6 +87,14 @@ public class Topic {
 
     public void setTopicDetail(List<TopicDetail> topicDetail) {
         this.topicDetail = topicDetail;
+    }
+
+    public String getIsBookmark() {
+        return isBookmark;
+    }
+
+    public void setIsBookmark(String isBookmark) {
+        this.isBookmark = isBookmark;
     }
 
 }
