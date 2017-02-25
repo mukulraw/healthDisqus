@@ -3,10 +3,13 @@ package interfaces;
 
 import android.support.v4.media.session.PlaybackStateCompat;
 
+import addPostPOJO.addPodtBean;
+import addTopicPOJO.addTopicBean;
 import bookmarkPOJO.addBean;
 import catPOJO.catBean;
 import loginPOJO.loginBean;
 import registerPOJO.registerBean;
+import removePOJO.removeBean;
 import retrofit2.Call;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -38,6 +41,18 @@ public interface allAPIs {
 
     @Multipart
     @POST("hellthnu_app/add_bookmark.php")
-    Call<addBean> addBookmark(@Part("userid") String userId , @Part("topic") String topic);
+    Call<addBean> addBookmark(@Part("userid") String userId , @Part("topicid") String topic);
+
+    @Multipart
+    @POST("hellthnu_app/delete_bookmark.php")
+    Call<removeBean> removeBookmark(@Part("userid") String userId , @Part("topicid") String topic);
+
+    @Multipart
+    @POST("hellthnu_app/add_topic.php")
+    Call<addTopicBean> addTopic(@Part("catid") String catId , @Part("userid") String userId , @Part("subject") String subject , @Part("text") String text , @Part("topic_attchment") String attac , @Part("realfile_name") String name , @Part("physical_filename") String filename , @Part("extension") String ext , @Part("filesize") String size , @Part("mimetype") String mime , @Part("physical_filename") String phy_filename);
+
+    @Multipart
+    @POST("hellthnu_app/add_post.php")
+    Call<addPodtBean> addPost(@Part("topicid") String topicId , @Part("catid") String catId , @Part("userid") String userId , @Part("subject") String subject , @Part("text") String text , @Part("topic_attchment") String attac , @Part("realfile_name") String name , @Part("physical_filename") String filename , @Part("extension") String ext , @Part("filesize") String size , @Part("mimetype") String mime , @Part("physical_filename") String phy_filename);
 
 }

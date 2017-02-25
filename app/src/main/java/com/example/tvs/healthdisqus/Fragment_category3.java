@@ -2,8 +2,10 @@ package com.example.tvs.healthdisqus;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,8 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import addTopicPOJO.addTopicBean;
 import bookmarkPOJO.addBean;
 import interfaces.allAPIs;
+import removePOJO.removeBean;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,13 +43,16 @@ public class Fragment_category3 extends Fragment {
     Dataadapter1 dataadapter1;
     ProgressBar progress;
     List<Topic> list;
+    FloatingActionButton add;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.category_fragment , container , false);
+        View view = inflater.inflate(R.layout.category_fragment2 , container , false);
 
         list = new ArrayList<>();
+
+        add = (FloatingActionButton)view.findViewById(R.id.add);
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
@@ -62,6 +69,31 @@ public class Fragment_category3 extends Fragment {
         recyclerView.setAdapter(dataadapter1);
 
 
+
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getContext() , AddTopic.class);
+                intent.putExtra("id" , getArguments().getString("id"));
+
+                startActivity(intent);
+
+            }
+        });
+
+
+        return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         progress.setVisibility(View.VISIBLE);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -71,9 +103,9 @@ public class Fragment_category3 extends Fragment {
                 .build();
 
 
-        allAPIs cr = retrofit.create(allAPIs.class);
+        final allAPIs cr = retrofit.create(allAPIs.class);
 
-        bean b = (bean)getContext().getApplicationContext();
+        final bean b = (bean)getContext().getApplicationContext();
 
         Call<topicBean> call = cr.fetchTopics(getArguments().getString("id") , b.id);
 
@@ -96,8 +128,6 @@ public class Fragment_category3 extends Fragment {
         });
 
 
-
-        return view;
     }
 
     public class Dataadapter1 extends RecyclerView.Adapter<Dataadapter1.MyViewHolder> {
@@ -127,13 +157,15 @@ public class Fragment_category3 extends Fragment {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
 
+            holder.setIsRecyclable(false);
+
             final Topic item = list.get(position);
 
 
             holder.name.setText(item.getUserName());
             holder.title.setText(item.getTopicTitle());
             holder.desc.setText(Html.fromHtml(item.getTopicDetail().get(0).getDescription()));
-            holder.count.setText(item.getTopicDetail().get(0).getTotalReply());
+            //holder.count.setText(item.getTopicDetail().get(0).getTotalReply());
 
             if (Objects.equals(item.getIsBookmark(), "true"))
             {
@@ -150,8 +182,10 @@ public class Fragment_category3 extends Fragment {
                 public void onClick(View v) {
 
 
-                    if (holder.star.getBackground() == context.getResources().getDrawable(R.drawable.star_yellow))
+                    if (Objects.equals(item.getIsBookmark(), "false"))
                     {
+                        progress.setVisibility(View.VISIBLE);
+
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl("http://www.healthdisqus.com/")
                                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -175,6 +209,8 @@ public class Fragment_category3 extends Fragment {
                                     @Override
                                     public void onResponse(Call<topicBean> call, Response<topicBean> response) {
 
+                                        list.clear();
+
                                         list = response.body().getTopic();
 
                                         dataadapter1.setGridData(list);
@@ -197,6 +233,57 @@ public class Fragment_category3 extends Fragment {
                             }
                         });
 
+                    }
+                    else if (Objects.equals(item.getIsBookmark(), "true"))
+                    {
+                        progress.setVisibility(View.VISIBLE);
+
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("http://www.healthdisqus.com/")
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+
+                        final allAPIs cr = retrofit.create(allAPIs.class);
+
+                        final bean b = (bean)getContext().getApplicationContext();
+
+                        Call<removeBean> call = cr.removeBookmark(b.id , item.getTopicId());
+
+                        call.enqueue(new Callback<removeBean>() {
+                            @Override
+                            public void onResponse(Call<removeBean> call, Response<removeBean> response) {
+
+                                Call<topicBean> call2 = cr.fetchTopics(getArguments().getString("id") , b.id);
+
+                                call2.enqueue(new Callback<topicBean>() {
+                                    @Override
+                                    public void onResponse(Call<topicBean> call, Response<topicBean> response) {
+
+                                        list.clear();
+
+                                        list = response.body().getTopic();
+
+                                        dataadapter1.setGridData(list);
+
+                                        progress.setVisibility(View.GONE);
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<topicBean> call, Throwable t) {
+
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<removeBean> call, Throwable t) {
+
+                            }
+                        });
                     }
 
 
