@@ -3,6 +3,7 @@ package com.example.tvs.healthdisqus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -49,6 +50,9 @@ public class Fragment_category3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category_fragment2 , container , false);
+
+        ((MainActivity) getActivity()).toolbar.setTitle(getArguments().getString("name"));
+        ((MainActivity) getActivity()).toolbar.setTitleTextColor(Color.WHITE);
 
         list = new ArrayList<>();
 
@@ -164,7 +168,17 @@ public class Fragment_category3 extends Fragment {
 
             holder.name.setText(item.getUserName());
             holder.title.setText(item.getTopicTitle());
-            holder.desc.setText(Html.fromHtml(item.getTopicDetail().get(0).getDescription()));
+
+            try {
+
+                holder.desc.setText(Html.fromHtml(item.getTopicDetail().get(0).getDescription()));
+
+            }catch (IndexOutOfBoundsException e)
+            {
+                e.printStackTrace();
+            }
+
+
             //holder.count.setText(item.getTopicDetail().get(0).getTotalReply());
 
             if (Objects.equals(item.getIsBookmark(), "true"))
@@ -303,6 +317,7 @@ public class Fragment_category3 extends Fragment {
                     Bundle b = new Bundle();
                     b.putString("catid" , item.getCatId());
                     b.putString("topicid" , item.getTopicId());
+                    b.putString("topic" , item.getTopicTitle());
                     category_fragment.setArguments(b);
 
                     ft.replace(R.id.layout_to_replace,category_fragment);

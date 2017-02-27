@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawer;
-    TextView name , home , settings , logout;
+    TextView name , home , settings , logout , book;
 
 
     @Override
@@ -38,17 +39,39 @@ public class MainActivity extends AppCompatActivity {
         home = (TextView)findViewById(R.id.home);
         settings = (TextView)findViewById(R.id.settings);
         logout = (TextView)findViewById(R.id.logout);
+        book = (TextView)findViewById(R.id.book);
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this , Bookmarks.class);
+                startActivity(intent);
+
+            }
+        });
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
-        try {
+        try
+        {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        } catch (NullPointerException e1) {
+        } catch (NullPointerException e1)
+        {
             e1.printStackTrace();
         }
+
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -68,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = new Bundle();
 
         b.putString("id" , "0");
-        b.putString("name" , "root");
+        b.putString("name" , "Categories");
 
         category_fragment.setArguments(b);
 

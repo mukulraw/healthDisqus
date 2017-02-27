@@ -2,12 +2,14 @@ package com.example.tvs.healthdisqus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,9 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.rockerhieu.emojicon.EmojiconTextView;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +54,8 @@ public class Comments extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category_fragment3 , container , false);
 
-
-
-
+        ((MainActivity) getActivity()).toolbar.setTitle(getArguments().getString("topic"));
+        ((MainActivity) getActivity()).toolbar.setTitleTextColor(Color.WHITE);
 
         comment = (FloatingActionButton)view.findViewById(R.id.comment);
 
@@ -152,6 +156,8 @@ public class Comments extends Fragment {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
 
+            holder.setIsRecyclable(false);
+
             TopicDetail item = list.get(position);
 
             ImageLoader loader = ImageLoader.getInstance();
@@ -161,7 +167,8 @@ public class Comments extends Fragment {
             holder.name.setText(item.getUserDetail().get(0).getUsername());
             holder.date.setText(item.getPostTime());
             holder.subject.setText(item.getSubject());
-            holder.desc.setText(item.getDescription());
+
+            holder.desc.setText(Html.fromHtml(StringEscapeUtils.unescapeJava(item.getDescription())));
 
 
         }
@@ -174,7 +181,8 @@ public class Comments extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder{
 
             ImageView image;
-            TextView name , date , subject , desc;
+            TextView name , date , subject;
+            EmojiconTextView desc;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -183,7 +191,7 @@ public class Comments extends Fragment {
                 name = (TextView)itemView.findViewById(R.id.name);
                 date = (TextView)itemView.findViewById(R.id.date);
                 subject = (TextView)itemView.findViewById(R.id.subject);
-                desc = (TextView)itemView.findViewById(R.id.desc);
+                desc = (EmojiconTextView) itemView.findViewById(R.id.desc);
 
             }
         }

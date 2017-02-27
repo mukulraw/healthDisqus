@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by tvs on 2/7/2017.
- */
 
 public class Category_fragment2 extends Fragment {
 

@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddTopic" />
-        <activity android:name=".AddPost"></activity>
+        <activity android:name=".AddPost" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Bookmarks"></activity>
     </application>
 
 </manifest>

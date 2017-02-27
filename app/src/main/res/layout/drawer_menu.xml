@@ -39,7 +39,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="18dp"
-        android:text="Settings"
+        android:text="Bookmarks"
+        android:id="@+id/book"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        android:drawablePadding="18dp"
+        android:drawableStart="@drawable/settings"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:text="My Profile"
         android:id="@+id/settings"
         android:textColor="#000000"
         android:gravity="center_vertical"

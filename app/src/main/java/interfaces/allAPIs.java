@@ -7,7 +7,10 @@ import addPostPOJO.addPodtBean;
 import addTopicPOJO.addTopicBean;
 import bookmarkPOJO.addBean;
 import catPOJO.catBean;
+import deleteBookPOJO.deleteBookBean;
+import editPostPOJO.editPostBean;
 import loginPOJO.loginBean;
+import mBookmarkPOJO.manageBookmarkBean;
 import registerPOJO.registerBean;
 import removePOJO.removeBean;
 import retrofit2.Call;
@@ -54,5 +57,17 @@ public interface allAPIs {
     @Multipart
     @POST("hellthnu_app/add_post.php")
     Call<addPodtBean> addPost(@Part("topicid") String topicId , @Part("catid") String catId , @Part("userid") String userId , @Part("subject") String subject , @Part("text") String text , @Part("topic_attchment") String attac , @Part("realfile_name") String name , @Part("physical_filename") String filename , @Part("extension") String ext , @Part("filesize") String size , @Part("mimetype") String mime , @Part("physical_filename") String phy_filename);
+
+    @Multipart
+    @POST("hellthnu_app/edit_post.php")
+    Call<editPostBean> editPost(@Part("userid") String userId , @Part("subject") String subject , @Part("text") String text , @Part("topic_attchment") String attac , @Part("realfile_name") String name , @Part("extension") String ext , @Part("filesize") String size , @Part("mimetype") String mime , @Part("physical_filename") String phy_filename);
+
+    @Multipart
+    @POST("hellthnu_app/manage_bookmark.php")
+    Call<manageBookmarkBean> bookmark(@Part("userid") String userId);
+
+    @Multipart
+    @POST("hellthnu_app/delete_bookmark.php")
+    Call<deleteBookBean> deleteBook(@Part("userid") String userId , @Part("topicid") String topicId);
 
 }
