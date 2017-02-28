@@ -1,5 +1,6 @@
 package com.example.tvs.healthdisqus;
 
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,25 @@ public class AddTopic extends AppCompatActivity {
         setContentView(R.layout.activity_add_topic);
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        toolbar.setTitle("Add Topic");
+
+        toolbar.setNavigationIcon(R.drawable.back);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         catId = getIntent().getExtras().getString("id");
 

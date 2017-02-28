@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.materialtextfield.MaterialTextField;
+
+import org.w3c.dom.Text;
 
 import interfaces.allAPIs;
 import loginPOJO.loginBean;
@@ -26,7 +29,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Login extends AppCompatActivity {
 
-    Button signin , join;
+    Button signin;
+    TextView join;
     EditText username , password;
     ProgressBar progress;
 
@@ -56,7 +60,7 @@ public class Login extends AppCompatActivity {
         progress = (ProgressBar)findViewById(R.id.progress);
 
         signin= (Button) findViewById(R.id.button);
-        join= (Button) findViewById(R.id.button1);
+        join= (TextView) findViewById(R.id.button1);
 
         username= (EditText) findViewById(R.id.username);
         password= (EditText) findViewById(R.id.password);

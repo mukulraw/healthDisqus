@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawer;
-    TextView name , home , settings , logout , book;
+    TextView name , settings , logout , book;
 
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(MainActivity.this));
 
         name = (TextView)findViewById(R.id.name);
-        home = (TextView)findViewById(R.id.home);
+
         settings = (TextView)findViewById(R.id.settings);
         logout = (TextView)findViewById(R.id.logout);
         book = (TextView)findViewById(R.id.book);
@@ -69,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                Intent intent = new Intent(MainActivity.this , Profile.class);
+                startActivity(intent);
+
 
             }
         });
+
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -120,7 +124,20 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.Search) {
-            Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+            Category_fragment frag1 = new Category_fragment();
+            Bundle b = new Bundle();
+
+            b.putString("id" , "0");
+            b.putString("name" , "Categories");
+
+            frag1.setArguments(b);
+
+            ft.replace(R.id.layout_to_replace , frag1);
+            ft.commit();
+
+            drawer.closeDrawer(GravityCompat.START);
 
         }
 

@@ -1,7 +1,9 @@
 package com.example.tvs.healthdisqus;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ public class AddPost extends AppCompatActivity {
     Button add;
     ProgressBar progress;
     String tid , cid;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,27 @@ public class AddPost extends AppCompatActivity {
         desc = (EditText)findViewById(R.id.desc);
         progress = (ProgressBar)findViewById(R.id.progress);
         add = (Button)findViewById(R.id.add);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        toolbar.setTitle("Add Post");
+
+        toolbar.setNavigationIcon(R.drawable.back);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
         tid = getIntent().getStringExtra("tid");
         cid = getIntent().getStringExtra("cid");

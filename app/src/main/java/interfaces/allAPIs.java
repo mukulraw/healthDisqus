@@ -3,6 +3,9 @@ package interfaces;
 
 import android.support.v4.media.session.PlaybackStateCompat;
 
+import com.example.tvs.healthdisqus.imageBean;
+import com.example.tvs.healthdisqus.updateBean;
+
 import addPostPOJO.addPodtBean;
 import addTopicPOJO.addTopicBean;
 import bookmarkPOJO.addBean;
@@ -11,6 +14,7 @@ import deleteBookPOJO.deleteBookBean;
 import editPostPOJO.editPostBean;
 import loginPOJO.loginBean;
 import mBookmarkPOJO.manageBookmarkBean;
+import okhttp3.MultipartBody;
 import registerPOJO.registerBean;
 import removePOJO.removeBean;
 import retrofit2.Call;
@@ -70,4 +74,11 @@ public interface allAPIs {
     @POST("hellthnu_app/delete_bookmark.php")
     Call<deleteBookBean> deleteBook(@Part("userid") String userId , @Part("topicid") String topicId);
 
+    @Multipart
+    @POST("hellthnu_app/profile_image.php")
+    Call<imageBean> getImage(@Part("userid") String userId);
+
+    @Multipart
+    @POST("hellthnu_app/update_profile_image.php")
+    Call<updateBean> updateImage(@Part("userid") String userId , @Part MultipartBody.Part file);
 }

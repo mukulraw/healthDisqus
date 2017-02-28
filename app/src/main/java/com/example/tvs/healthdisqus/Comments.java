@@ -171,6 +171,8 @@ public class Comments extends Fragment {
             holder.desc.setText(Html.fromHtml(StringEscapeUtils.unescapeJava(item.getDescription())));
 
 
+
+
         }
 
         @Override

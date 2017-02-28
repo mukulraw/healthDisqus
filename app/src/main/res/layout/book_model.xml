@@ -21,7 +21,6 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:id="@+id/name"
             android:gravity="center"
             />
@@ -31,7 +30,7 @@
         <ImageButton
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@drawable/delete"
@@ -47,7 +46,7 @@
         android:layout_height="match_parent"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
+
         android:paddingBottom="5dp"
         android:id="@+id/desc"
         android:textStyle="bold"

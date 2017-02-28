@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/colorPrimary"
         >
 
         <android.support.v7.widget.Toolbar
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Subject"
             android:layout_marginTop="18dp"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:paddingBottom="5dp"
@@ -45,8 +44,8 @@
             android:layout_marginEnd="10dp"
             android:id="@+id/subject"
             android:hint="Subject"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
             android:gravity="center_vertical"
             android:background="@drawable/comment_back"
             android:paddingTop="18dp"
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Description"
             android:paddingStart="18dp"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:paddingEnd="18dp"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
@@ -74,8 +73,8 @@
             android:hint="Description"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
             android:id="@+id/desc"
             android:background="@drawable/comment_back"
             android:paddingTop="18dp"
@@ -89,7 +88,8 @@
             android:layout_margin="10dp"
             android:text="add topic"
             android:id="@+id/add"
-            android:background="@drawable/button_back"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_accent"
             />
 
 

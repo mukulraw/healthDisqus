@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.google.api.translate.Language;
+import com.google.api.translate.Translate;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.w3c.dom.Text;
@@ -55,10 +56,20 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         holder.name.setText(item.getUserDetail().get(0).getUsername());
         holder.date.setText(item.getPostTime());
         holder.subject.setText(item.getSubject());
-        holder.desc.setText(item.getDescription());
+
+        Translate translate = new Translate();
+
+        try {
+            holder.desc.setText(translate.execute(item.getDescription() , Language.ENGLISH , Language.FRENCH));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
+
+
+
 
     @Override
     public int getItemCount() {

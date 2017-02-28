@@ -2,11 +2,13 @@ package com.example.tvs.healthdisqus;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.graphics.Color;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,8 @@ public class Bookmarks extends AppCompatActivity {
 
     List<Managebookmark> list;
 
+    Toolbar toolbar;
+
     BookAdapter adapter;
 
     ProgressBar progress;
@@ -43,6 +47,25 @@ public class Bookmarks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmarks);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        toolbar.setTitle("Bookmarks");
+
+        toolbar.setNavigationIcon(R.drawable.back);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         grid = (RecyclerView)findViewById(R.id.grid);
         manager = new GridLayoutManager(this , 1);
