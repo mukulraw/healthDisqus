@@ -1,6 +1,7 @@
 package com.example.tvs.healthdisqus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -27,11 +28,17 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawer;
     TextView name , settings , logout , book;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor edit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pref = getSharedPreferences("my" , MODE_PRIVATE);
+        edit = pref.edit();
 
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(MainActivity.this));
 
@@ -77,6 +84,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                edit.remove("id");
+                edit.remove("password");
+                edit.commit();
+
+                bean b = (bean)getApplicationContext();
+
+                b.id = "";
+                b.name = "";
+
+                Intent i = new Intent(getApplicationContext() , Login.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
         category_fragment.setArguments(b);
 
-        ft.add(R.id.layout_to_replace,category_fragment);
+        ft.replace(R.id.layout_to_replace,category_fragment);
+
         ft.commit();
 
 
@@ -135,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             frag1.setArguments(b);
 
             ft.replace(R.id.layout_to_replace , frag1);
+            ft.addToBackStack(null);
             ft.commit();
 
             drawer.closeDrawer(GravityCompat.START);

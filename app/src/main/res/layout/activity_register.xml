@@ -22,13 +22,12 @@
         android:id="@+id/toolbar"
         />
 
-        <android.support.design.widget.TextInputLayout
+        <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/userinput"
-            app:paddingStart="8dp"
-            app:paddingEnd="8dp"
+            android:layout_marginStart="10dp"
+            app:mtf_image="@drawable/username"
+            android:layout_marginEnd="10dp"
             >
 
     <EditText
@@ -36,50 +35,42 @@
         android:layout_height="wrap_content"
         android:id="@+id/user"
         android:inputType="textPersonName"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#ffffff"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+
+        android:textColor="#333"
+        android:textColorHint="#666"
+
         android:hint="Username"
         />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.github.florent37.materialtextfield.MaterialTextField>
 
-        <android.support.design.widget.TextInputLayout
+        <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailinput"
-            app:paddingStart="8dp"
-            app:paddingEnd="8dp"
+            android:layout_marginStart="10dp"
+            app:mtf_image="@drawable/email"
+            android:layout_marginEnd="10dp"
             >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/email"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:textColorHint="#ffffff"
-        android:textColor="#ffffff"
+
+        android:textColor="#333"
+        android:textColorHint="#666"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+
         android:hint="Email"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.github.florent37.materialtextfield.MaterialTextField>
 
-        <android.support.design.widget.TextInputLayout
+        <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/passinput"
-            app:paddingStart="8dp"
-            app:paddingEnd="8dp"
+            android:layout_marginStart="10dp"
+            app:mtf_image="@drawable/password"
+            android:layout_marginEnd="10dp"
             >
 
     <EditText
@@ -87,26 +78,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/pass"
         android:inputType="textPassword"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#ffffff"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+
+        android:textColor="#333"
+        android:textColorHint="#666"
+
         android:hint="Password"
         />
 
 
-        </android.support.design.widget.TextInputLayout>
+        </com.github.florent37.materialtextfield.MaterialTextField>
 
-        <android.support.design.widget.TextInputLayout
+        <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pass2input"
-            app:paddingStart="8dp"
-            app:paddingEnd="8dp"
+            android:layout_marginStart="10dp"
+            app:mtf_image="@drawable/password"
+            android:layout_marginEnd="10dp"
             >
 
     <EditText
@@ -114,18 +101,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/pass2"
         android:inputType="textPassword"
-        android:textColorHint="#ffffff"
-        android:textColor="#ffffff"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:textColor="#333"
+        android:textColorHint="#666"
         android:hint="Confirm Password"
         />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.github.florent37.materialtextfield.MaterialTextField>
 
     <Button
         android:layout_width="wrap_content"
@@ -134,9 +115,26 @@
         android:background="@drawable/button_back"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="Sign up"
         />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Already Registered"
+            android:textAllCaps="true"
+            />
 
     </LinearLayout>
 

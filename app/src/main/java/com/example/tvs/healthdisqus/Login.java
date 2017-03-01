@@ -1,6 +1,7 @@
 package com.example.tvs.healthdisqus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -36,11 +37,16 @@ public class Login extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor edit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        pref = getSharedPreferences("my" , MODE_PRIVATE);
+        edit = pref.edit();
 
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -108,7 +114,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void login(String username , String password)
+    public void login(final String username , final String password)
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -139,6 +145,10 @@ public class Login extends AppCompatActivity {
                     b.name = response.body().getLogin().get(0).getUserName();
 
                     Intent i = new Intent(Login.this , MainActivity.class);
+
+                    edit.putString("id" , username);
+                    edit.putString("pass" , password);
+                    edit.commit();
 
                     startActivity(i);
 

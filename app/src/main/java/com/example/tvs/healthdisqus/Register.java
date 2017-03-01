@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -28,10 +29,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Register extends AppCompatActivity {
 
     EditText email , password , confirmpassword;
-    TextInputLayout e , p , cp;
     Button signup;
     Toolbar toolbar;
     ProgressBar progress;
+
+    TextView back;
 
     EditText username;
 
@@ -41,9 +43,17 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        e = (TextInputLayout)findViewById(R.id.emailinput);
-        p = (TextInputLayout)findViewById(R.id.passinput);
-        cp = (TextInputLayout)findViewById(R.id.pass2input);
+
+        back = (TextView)findViewById(R.id.button1);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+            }
+        });
 
 
         progress = (ProgressBar)findViewById(R.id.progress);
