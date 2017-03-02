@@ -47,6 +47,7 @@ public class Comments extends Fragment {
     CommentAdapter adapter;
     FloatingActionButton comment;
     ProgressBar progress;
+    TextView hide;
 
 
     @Nullable
@@ -58,6 +59,8 @@ public class Comments extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitleTextColor(Color.WHITE);
 
         comment = (FloatingActionButton)view.findViewById(R.id.comment);
+
+        hide = (TextView)view.findViewById(R.id.hide);
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
@@ -97,6 +100,8 @@ public class Comments extends Fragment {
     public void onResume() {
         super.onResume();
 
+        progress.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.healthdisqus.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -117,11 +122,21 @@ public class Comments extends Fragment {
 
                 adapter.setGridData(list);
 
+                if (list.size() == 0)
+                {
+                    hide.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    hide.setVisibility(View.GONE);
+                }
+
+                progress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<topicBean> call, Throwable t) {
-
+                progress.setVisibility(View.GONE);
             }
         });
 

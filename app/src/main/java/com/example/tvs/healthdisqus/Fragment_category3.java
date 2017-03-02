@@ -45,11 +45,14 @@ public class Fragment_category3 extends Fragment {
     ProgressBar progress;
     List<Topic> list;
     FloatingActionButton add;
+    TextView hide;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category_fragment2 , container , false);
+
+        hide = (TextView)view.findViewById(R.id.hide);
 
         ((MainActivity) getActivity()).toolbar.setTitle(getArguments().getString("name"));
         ((MainActivity) getActivity()).toolbar.setTitleTextColor(Color.WHITE);
@@ -119,15 +122,31 @@ public class Fragment_category3 extends Fragment {
 
                 list = response.body().getTopic();
 
-                dataadapter1.setGridData(list);
+                if (response.body().getTopic().size() == 1)
+                {
+                    if (response.body().getTopic().get(0).getTopicId().length() == 0)
+                    {
+                        hide.setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        hide.setVisibility(View.GONE);
+                        progress.setVisibility(View.GONE);
+                    }
 
+                }
+
+
+                dataadapter1.setGridData(list);
                 progress.setVisibility(View.GONE);
+
 
             }
 
             @Override
             public void onFailure(Call<topicBean> call, Throwable t) {
-
+                progress.setVisibility(View.GONE);
             }
         });
 
@@ -179,7 +198,15 @@ public class Fragment_category3 extends Fragment {
             }
 
 
-            //holder.count.setText(item.getTopicDetail().get(0).getTotalReply());
+            try
+            {
+                holder.count.setText(String.valueOf(item.getTopicDetail().get(0).getTotalReply()));
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
 
             if (Objects.equals(item.getIsBookmark(), "true"))
             {
