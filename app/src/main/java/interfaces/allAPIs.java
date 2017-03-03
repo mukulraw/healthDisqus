@@ -1,10 +1,8 @@
 package interfaces;
 
 
-import android.support.v4.media.session.PlaybackStateCompat;
-
-import com.example.tvs.healthdisqus.imageBean;
-import com.example.tvs.healthdisqus.updateBean;
+import com.hd.tvs.healthdisqus.imageBean;
+import com.hd.tvs.healthdisqus.updateBean;
 
 import addPostPOJO.addPodtBean;
 import addTopicPOJO.addTopicBean;
@@ -21,7 +19,6 @@ import retrofit2.Call;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import topicPOJO.topicBean;
 
 
 public interface allAPIs {

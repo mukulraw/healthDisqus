@@ -1,4 +1,4 @@
-package com.example.tvs.healthdisqus;
+package com.hd.tvs.healthdisqus;
 
 
 import com.google.gson.annotations.Expose;

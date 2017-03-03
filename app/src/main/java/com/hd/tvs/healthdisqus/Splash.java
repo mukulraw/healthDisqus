@@ -1,4 +1,4 @@
-package com.example.tvs.healthdisqus;
+package com.hd.tvs.healthdisqus;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
